@@ -1,43 +1,28 @@
 import React from 'react';
 
-function EventCard({ name, image }) {
+const EventCard = ({ id, name, description, image, price }) => {
   return (
-    <div className="col-span-1 flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden h-auto md:h-64">
+    <div className="border p-4 rounded shadow-lg bg-white">
       {/* Image Section */}
-      <div className="md:w-2/5 w-full h-48 md:h-full">
-        <img
-          src={image}
-          alt={name}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
+      <img src={image} alt={name} className="w-full h-48 object-cover rounded-t" />
+      
       {/* Content Section */}
-      <div className="flex flex-col justify-between px-4 py-3 md:w-3/5">
-        {/* Title */}
-        <div className="mb-3 border-b border-teal-400 pb-2">
-          <h1 className="text-2xl text-teal-500 font-bold">{name}</h1>
-        </div>
-
-        {/* Description */}
-        <div className="text-gray-700 text-sm mb-4 flex-grow">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque fugiat quod sit
-            adipisci sunt, incidunt ex voluptatem vero consequatur non fugit ducimus
-            molestias aut debitis. Eum, dolorem.
-          </p>
-        </div>
-
+      <div className="p-4">
+        <h2 className="text-xl font-bold mb-2">{name}</h2>
+        <p className="text-gray-700 mb-4">
+          {description}
+        </p>
+        
         {/* Footer Section */}
-        <div>
+        <div className="flex justify-between items-center">
           {/* Ticket Price */}
-          <div className="text-teal-600 font-semibold mb-2">
-            Ticket Price: <span className="font-bold text-teal-500">300Dh</span>
+          <div className="text-teal-600 font-semibold">
+            Ticket Price: <span className="font-bold text-teal-500">{price}Dh</span>
           </div>
           {/* Button */}
           <a
-            href="#"
-            className="block text-center bg-teal-500 text-white font-bold py-2 px-4 rounded shadow hover:bg-teal-600 transition duration-200"
+            href={`/events/${id}`}
+            className="bg-teal-500 text-white font-bold py-2 px-4 rounded shadow hover:bg-teal-600 transition duration-200"
           >
             View Event
           </a>
@@ -45,6 +30,6 @@ function EventCard({ name, image }) {
       </div>
     </div>
   );
-}
+};
 
 export default EventCard;

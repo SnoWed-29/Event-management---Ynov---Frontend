@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase';
+import { useState } from 'react';
+import axios from 'axios';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -8,15 +7,20 @@ function Login() {
   const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
-
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("User signed in:", userCredential.user);
-      alert("Login successful!");
+      const data = { email: email, password: password };
+      const response = await axios.post("http://localhost:8080/login", data, { withCredentials: true });
+      if (response.status === 201) {
+        // Since the cookie is HttpOnly, we cannot access it via JavaScript
+        // Instead, we rely on the server to handle authenticated requests
+        alert("Login successful!");
+      } else {
+        setError("Failed to login. Please try again.");
+      }
     } catch (err) {
       console.error(err);
-      setError("Failed to log in. Please check your credentials.");
+      setError("Failed to login. Please try again.");
     }
   };
 
@@ -30,23 +34,16 @@ function Login() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 rounded"
-          required
+          className="p-2 border rounded"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 rounded"
-          required
+          className="p-2 border rounded"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-          Login
-        </button>
-        <div className="flex w-full justify-end">
-            <a href="/signup" className='underline text-sm'>Register Now</a>
-        </div>
+        <button type="submit" className="p-2 bg-blue-500 text-white rounded">Login</button>
       </form>
     </div>
   );
