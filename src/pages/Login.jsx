@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -12,9 +14,7 @@ function Login() {
       const data = { email: email, password: password };
       const response = await axios.post("http://localhost:8080/login", data, { withCredentials: true });
       if (response.status === 201) {
-        // Since the cookie is HttpOnly, we cannot access it via JavaScript
-        // Instead, we rely on the server to handle authenticated requests
-        alert("Login successful!");
+        navigate('/'); // Redirect to the main page
       } else {
         setError("Failed to login. Please try again.");
       }

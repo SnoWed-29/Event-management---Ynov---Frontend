@@ -9,6 +9,8 @@ import Events from './pages/Event';
 import OneEvent from './pages/OneEvent';
 import ProtectedRoute from './routes/ProtectedRoute';
 import CreateEvent from './pages/CreateEvent';
+import MyEvents from './pages/MyEvents';
+import MyTickets from './pages/Mytickets';
 
 function App() {
   console.log("Firebase App:", app);
@@ -23,6 +25,9 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/events/:id" element={<OneEvent />} />
         <Route path="/create-event" element={<CreateEvent />} />
+
+        <Route path="/my-events" element={<MyEvents />} />
+        <Route path="/my-tickets" element={<MyTickets />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/protected-events" element={<Events />} />

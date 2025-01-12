@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const API_URL = 'http://localhost:8080/events'; // Adjust the base URL as necessary
 
@@ -58,14 +59,22 @@ const deleteEvent = async (id) => {
 };
 
 // Add attendance
-const addAttendance = async (attendanceData) => {
-  try {
-    const response = await axios.post('http://localhost:8080/attend', attendanceData, { withCredentials: true });
-    return response.data;
-  } catch (error) {
-    console.error('Failed to add attendance:', error);
-    throw error;
-  }
-};
+const buyTicket = async (ticketData) => {
+    try {
+        const token = Cookies.get('access_token');
 
-export { getEvents, getEventById, createEvent, updateEvent, deleteEvent, addAttendance };
+      const response = await axios.post('http://localhost:8080/attend', ticketData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Failed to buy ticket:', error);
+      throw error;
+    }
+  };
+
+export { getEvents, getEventById, createEvent, updateEvent, deleteEvent, buyTicket };

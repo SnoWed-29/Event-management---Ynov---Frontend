@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { getEventById, addAttendance } from '../services/eventService'; // Adjust the import path as necessary
+import { getEventById } from '../services/eventService'; // Adjust the import path as necessary
+import { buyTicket }  from '../services/eventService';
 import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 function OneEvent() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -31,12 +33,15 @@ function OneEvent() {
       }
       const decodedToken = jwtDecode(token);
       const userId = decodedToken.user_id; // Adjust based on your token structure
-      console.log('Sending attendance data:', { userId, eventId: id });
-      await addAttendance({ userId, eventId: id });
-      alert('Ticket purchased successfully!');
+
+      const ticketData = { eventId: id, userId };
+      const response = await buyTicket(ticketData);
+      setSuccess('Ticket bought successfully!');
+      setError('');
     } catch (err) {
-      console.error('Failed to purchase ticket:', err);
-      setError('Failed to purchase ticket');
+      console.error(err);
+      setError('Failed to buy ticket. Please try again.');
+      setSuccess('');
     }
   };
 
@@ -68,6 +73,8 @@ function OneEvent() {
             >
               Buy Ticket
             </button>
+            {success && <p className="text-green-500 mt-4">{success}</p>}
+            {error && <p className="text-red-500 mt-4">{error}</p>}
           </div>
         </div>
       </div>
