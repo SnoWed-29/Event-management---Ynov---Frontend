@@ -38,9 +38,10 @@ function Navbar() {
             <i className="fa-regular fa-user px-4 py-3 text-xl hover:bg-black rounded-full"></i>
           </button>
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white border border-teal-500 rounded shadow-lg">
+            <div className="absolute top-[40px] right-0 mt-2 w-48 bg-white border border-teal-500 rounded shadow-lg z-50">
               <a href="/my-tickets" className="block px-4 py-2 text-teal-500 hover:bg-teal-100">My Tickets</a>
               <a href="/my-events" className="block px-4 py-2 text-teal-500 hover:bg-teal-100">My Events</a>
+              <a href="/create-event" className="block px-4 py-2 text-teal-500 hover:bg-teal-100">Create Event</a>
               <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-teal-500 hover:bg-teal-100">Logout</button>
             </div>
           )}

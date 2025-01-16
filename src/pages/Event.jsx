@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import EventCard from '../components/EventCard';
 import { getEvents } from '../services/eventService'; // Adjust the import path as necessary
-import image1 from '../assets/images/image1.jpg'
+import image from '../assets/images/image.png'
 function Event() {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState('');
@@ -29,7 +29,7 @@ function Event() {
           <EventCard
             key={event.id}
             name={event.name}
-            image={image1} 
+            image={image} 
             price={event.price} // added the price in the Db
             description={event.description}
             id={event.id}

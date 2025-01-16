@@ -39,14 +39,20 @@ const createEvent = async (eventData) => {
 // Update an event
 const updateEvent = async (id, eventData) => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, eventData, { withCredentials: true });
+    const token = Cookies.get('access_token');
+    const response = await axios.put(`${API_URL}/${id}`, eventData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
     return response.data;
   } catch (error) {
     console.error(`Failed to update event with ID ${id}:`, error);
     throw error;
   }
 };
-
 // Delete an event
 const deleteEvent = async (id) => {
   try {
@@ -58,7 +64,7 @@ const deleteEvent = async (id) => {
   }
 };
 
-// Add attendance
+// Add ticket to user
 const buyTicket = async (ticketData) => {
     try {
         const token = Cookies.get('access_token');

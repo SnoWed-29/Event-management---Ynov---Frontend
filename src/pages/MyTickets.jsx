@@ -30,7 +30,7 @@ const MyTickets = () => {
         setTickets(response.data);
       } catch (err) {
         console.error('Error fetching tickets:', err);
-        setError('Failed to fetch tickets. Please try again.');
+        setError('You have No Tickets');
       }
     };
 

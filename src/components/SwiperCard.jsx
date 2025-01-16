@@ -11,7 +11,7 @@ function SwiperCard({name, image, id, description, price}) {
             </div>
             <div className="flex text-lg">
                 <p>
-                    {description}
+                {description.length > 100 ? `${description.substring(0, 180)}...` : description}
                 </p>
             </div>
             <div className="flex">

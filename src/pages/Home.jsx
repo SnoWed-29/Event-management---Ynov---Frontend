@@ -5,8 +5,7 @@ import { Scrollbar } from 'swiper/modules';
 import SwiperCard from '../components/SwiperCard';
 import EventCard from '../components/EventCard';
 import { getEvents } from '../services/eventService'; // Adjust the import path as necessary
-import image2 from '../assets/images/image2.png';
-import image3 from '../assets/images/image3.jpg';
+import image from '../assets/images/image.png';
 
 function Home() {
   const [events, setEvents] = useState([]);
@@ -47,7 +46,7 @@ function Home() {
           >
             {sliderEvents.map(event => (
               <SwiperSlide key={event.id}>
-                <SwiperCard name={event.name} image={image2} price={event.price} description={event.description} />
+                <SwiperCard id={event.id} name={event.name} image={image} price={event.price} description={event.description} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -62,7 +61,7 @@ function Home() {
                 key={event.id}
                 id={event.id}
                 name={event.name}
-                image={image3}
+                image={image}
                 description={event.description}
                 price={event.price}
               />

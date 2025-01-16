@@ -4,13 +4,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyDnoU_-2Hf44sWWSp16_Z1vxg_GW923wX8",
+  authDomain: "devapiproject-fc40c.firebaseapp.com",
+  projectId: "devapiproject-fc40c",
+  storageBucket: "devapiproject-fc40c.firebasestorage.app",
+  messagingSenderId: "845585513899",
+  appId: "1:845585513899:web:0106d707501b7a2952a6ee",
+  measurementId: "G-3W5X1ZKX9D",
 };
 
 // Initialize Firebase
